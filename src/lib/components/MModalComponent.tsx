@@ -23,7 +23,7 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
   children,
   theme,
   appearance = "default",
-  height = 0,
+  height = "90%",
   isOpened,
   className = "",
   borderRadius = "36px",
@@ -38,7 +38,6 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
     if (isReady) {
       document.body.appendChild(el);
     } else {
-      ReactDOM.unmountComponentAtNode(el);
       el.remove();
     }
   }, [isReady]);
