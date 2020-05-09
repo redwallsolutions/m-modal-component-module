@@ -16,6 +16,9 @@ const defaultTheme = {
   mode: "light",
 };
 
+const el = document.createElement("div");
+el.id = "portal-m-modal-component-module";
+
 const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
   children,
   theme,
@@ -32,16 +35,26 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    if (isReady) {
+      document.body.appendChild(el);
+    } else {
+      ReactDOM.unmountComponentAtNode(el);
+      el.remove();
+    }
+  }, [isReady]);
+
+  useEffect(() => {
     if (isOpened) {
       setIsReady(true);
     }
-    setIsOpenedState(isOpened);
+    setTimeout(() => {
+      setIsOpenedState(isOpened);
+    }, 1);
   }, [isOpened]);
 
   const notReady = useCallback(() => {
     setTimeout(() => {
       setIsReady(false);
-      ReactDOM.unmountComponentAtNode(document.body);
       if (onDismiss) {
         onDismiss();
       }
@@ -79,7 +92,7 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
         {children}
       </MModal>
     </Container>,
-    document.body
+    el
   );
 };
 

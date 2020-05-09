@@ -10,10 +10,10 @@ const isLight = (mode: string) => mode === "light";
 export const Body = createGlobalStyle<IMModalProps>`
 ${({ isOpened }) =>
   isOpened &&
-  `body :not(#m-modal-component-module) {
+  `body :not(#portal-m-modal-component-module) {
     filter: blur(1px);
    }
-   body #m-modal-component-module * {
+   body #portal-m-modal-component-module * {
      filter: none;
      box-sizing: border-box;
    }
