@@ -49,7 +49,7 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
     }
     setTimeout(() => {
       setIsOpenedState(isOpened);
-    }, 1);
+    }, 50);
   }, [isOpened]);
 
   const notReady = useCallback(() => {
