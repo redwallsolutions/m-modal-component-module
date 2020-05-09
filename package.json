@@ -35,14 +35,16 @@
     "rimraf": "^3.0.0",
     "typescript": "^3.6.4"
   },
+  "peerDependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "styled-components": "^4.4.1"
+  },
   "dependencies": {
     "@redwallsolutions/common-interfaces-ts": "^1.0.2",
     "@redwallsolutions/theming-component-module": "^2.0.2",
     "color": "^3.1.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
     "react-ink": "^6.4.0",
-    "react-spinners": "^0.6.1",
-    "styled-components": "^4.4.1"
+    "react-spinners": "^0.6.1"
   }
 }
