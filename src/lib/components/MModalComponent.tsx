@@ -45,6 +45,8 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
   useEffect(() => {
     if (isOpened) {
       setIsReady(true);
+    } else {
+      notReady();
     }
     setTimeout(() => {
       setIsOpenedState(isOpened);

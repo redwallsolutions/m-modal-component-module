@@ -64,9 +64,9 @@ const App: FC = () => {
       setThemeMode(currentTarget.id);
     } else if (inputName === "opened") {
       setIsOpened(!isOpened);
-    } else if(inputName === "hasBlur") {
+    } else if (inputName === "hasBlur") {
       setHasBlur(!hasBlur);
-    }else {
+    } else {
       setAppearance(currentTarget.id);
     }
   };
@@ -142,6 +142,13 @@ const App: FC = () => {
           }}
         >
           <button onClick={randomHeight}>Random my own height</button>
+          <button
+            onClick={() => {
+              setIsOpened(false);
+            }}
+          >
+            Close
+          </button>
           {height}
         </Modal>
       </Container>
