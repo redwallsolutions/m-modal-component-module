@@ -23,7 +23,7 @@ ${({ isOpened }) =>
 export const Container = styled.div<IMModalProps & IModalStyledProps>`
   height: ${({ isReady }) => (isReady ? "100vh" : 0)};
   width: ${({ isReady }) => (isReady ? "100vw" : 0)};
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
@@ -54,8 +54,7 @@ export const MModal = styled.div<IMModalProps & IModalStyledProps>`
   padding: 10px;
   padding-top: 25px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-  transform: translateY(
-    ${({ height, isOpened }) => (isOpened ? 0 : `calc(-26px - ${height})`)}
-  );
+  transform-origin: top left;
+  transform: translateY(${({ isOpened }) => (isOpened ? 0 : "100%")});
   will-change: transform;
 `;
