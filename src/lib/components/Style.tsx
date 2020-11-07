@@ -35,13 +35,14 @@ export const Container = styled.div<IMModalProps & IModalStyledProps>`
 `;
 
 export const MModal = styled.div<IMModalProps & IModalStyledProps>`
+  position: absolute;
+  bottom: 0;
   height: ${({ height }) => height};
   width: 100%;
-  visibility: ${({ isReady }) => (isReady ? "visible" : "hidden")};
   border-top-left-radius: ${({ borderRadius }) => borderRadius};
   border-top-right-radius: ${({ borderRadius }) => borderRadius};
   overflow-y: auto;
-  transition: bottom 0.8s ${({ isOpened }) => isOpened && "0.2s"}
+  transition: transform 0.7s ${({ isOpened }) => isOpened && "0.2s"}
       cubic-bezier(0.36, 0.83, 0.05, 0.98),
     height 0.5s cubic-bezier(0.36, 0.83, 0.05, 0.98);
   background-color: ${(props) =>
@@ -53,7 +54,8 @@ export const MModal = styled.div<IMModalProps & IModalStyledProps>`
   padding: 10px;
   padding-top: 25px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-  position: absolute;
-  bottom: ${({ height, isOpened }) =>
-    isOpened ? 0 : `calc(-26px - ${height})`};
+  transform: translateY(
+    ${({ height, isOpened }) => (isOpened ? 0 : `calc(-26px - ${height})`)}
+  );
+  will-change: transform;
 `;
