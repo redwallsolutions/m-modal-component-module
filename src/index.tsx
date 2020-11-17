@@ -50,6 +50,7 @@ const App: FC = () => {
   const [themeMode, setThemeMode] = useState("light");
   const [appearance, setAppearance] = useState("default");
   const [isOpened, setIsOpened] = useState(false);
+  const [secondModal, setSecondMOdal] = useState(false);
   const [hasBlur, setHasBlur] = useState(false);
   const [height, setHeight] = useState("40%");
 
@@ -149,7 +150,17 @@ const App: FC = () => {
           >
             Close
           </button>
+          <button
+            onClick={() => {
+              setSecondMOdal(true)
+            }}
+          >
+            Inner Modal
+          </button>
           {height}
+          <Modal isOpened={secondModal}>
+            This is a second modal, wtf?
+          </Modal>
         </Modal>
       </Container>
     </ThemeProvider>

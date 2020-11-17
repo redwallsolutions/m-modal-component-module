@@ -6,6 +6,7 @@ import React, {
   useEffect,
   HTMLAttributes,
   MouseEvent,
+  useRef,
 } from "react";
 import ReactDOM from "react-dom";
 import { ThemeContext } from "styled-components";
@@ -15,9 +16,6 @@ import { Container, MModal, Body } from "./Style";
 const defaultTheme = {
   mode: "light",
 };
-
-const el = document.createElement("div");
-el.id = "portal-m-modal-component-module";
 
 const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
   children,
@@ -31,14 +29,17 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
   onDismiss,
   ...rest
 }) => {
+  const el = useRef(document.createElement("div"));
+  const randomID = useRef(`modal-${Math.random()}`);
+
   const [isOpenedState, setIsOpenedState] = useState(isOpened);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (isReady) {
-      document.body.appendChild(el);
+      document.body.appendChild(el.current);
     } else {
-      el.remove();
+      el.current.remove();
     }
   }, [isReady]);
 
@@ -59,12 +60,12 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
       if (onDismiss) {
         onDismiss();
       }
-    }, 700);
+    }, 400);
   }, []);
 
   const close = useCallback((event: MouseEvent<HTMLDivElement>) => {
     const target = event.target as Element;
-    if (target.id === "m-modal-component-module") {
+    if (target.id === randomID.current) {
       setIsOpenedState(false);
       notReady();
     }
@@ -74,7 +75,7 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
 
   return ReactDOM.createPortal(
     <Container
-      id="m-modal-component-module"
+      id={randomID.current}
       className={className}
       isOpened={isOpenedState}
       onClick={close}
@@ -93,7 +94,7 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
         {children}
       </MModal>
     </Container>,
-    el
+    el.current
   );
 };
 
