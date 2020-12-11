@@ -11,7 +11,7 @@ import React, {
 import ReactDOM from "react-dom";
 import { ThemeContext } from "styled-components";
 import { IMModalProps } from "./interfaces";
-import { Container, MModal, Body } from "./Style";
+import { Container, MModal } from "./Style";
 
 const defaultTheme = {
   mode: "light",
@@ -82,7 +82,6 @@ const MModalComponent: FC<IMModalProps & HTMLAttributes<HTMLDivElement>> = ({
       isReady={isReady}
       {...rest}
     >
-      {hasBlur && <Body isOpened={isReady} />}
       <MModal
         height={height}
         isOpened={isOpenedState}

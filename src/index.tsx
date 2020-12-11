@@ -138,6 +138,7 @@ const App: FC = () => {
           isOpened={isOpened}
           borderRadius="20px"
           hasBlur={hasBlur}
+          appearance={appearance as any}
           onDismiss={() => {
             setIsOpened(false);
           }}
@@ -152,15 +153,13 @@ const App: FC = () => {
           </button>
           <button
             onClick={() => {
-              setSecondMOdal(true)
+              setSecondMOdal(true);
             }}
           >
             Inner Modal
           </button>
           {height}
-          <Modal isOpened={secondModal}>
-            This is a second modal, wtf?
-          </Modal>
+          <Modal isOpened={secondModal}>This is a second modal, wtf?</Modal>
         </Modal>
       </Container>
     </ThemeProvider>
